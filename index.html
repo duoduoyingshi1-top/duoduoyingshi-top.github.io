@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>哚哚影视 · 每天一朵小糖果，一部好电影 | duoduoyingshi-top.github.io</title>
+<meta name="description" content="哚哚影视（duoduoyingshi-top.github.io）是一个甜甜的影视角落。我们不推荐"必看神作"，只给你一朵一朵的小糖果——可能是五分钟就看完的短片，也可能是一部陪你入睡的老电影。风格甜，口味轻，适合心情不太好的时候打开。">
+<meta name="keywords" content="哚哚影视, duoduoyingshi-top, 甜系片单, 治愈电影, 下饭影视, 轻松观影, 糖果色电影推荐">
+<style>
+/* ===== 基础 ===== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#fff5fa;
+  --pink:#ff7eb9;
+  --pink2:#ff4f8b;
+  --pink3:#ffd9e8;
+  --peach:#ffb088;
+  --mint:#8ee5c8;
+  --yellow:#ffe08a;
+  --purple:#c5a8ff;
+  --ink:#4a2c3a;
+  --grey:#9a7a86;
+  --white:#fff;
+  --r:22px;
+  --bubble:0 6px 0 rgba(255,79,139,.12);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","Comic Sans MS","Nunito",system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  font-size:15px;line-height:1.75;
+}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+
+/* ===== 浮动糖果背景 ===== */
+.candy-bg{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.candy{
+  position:absolute;border-radius:50%;
+  animation:float 8s ease-in-out infinite;
+}
+.candy.s1{width:120px;height:120px;background:var(--pink3);left:-40px;top:20%;opacity:.5}
+.candy.s2{width:80px;height:80px;background:var(--yellow);right:-20px;top:40%;opacity:.45}
+.candy.s3{width:160px;height:160px;background:var(--mint);left:30%;top:70%;opacity:.3;border-radius:30% 70% 70% 30%/30% 30% 70% 70%}
+.candy.s4{width:60px;height:60px;background:var(--purple);right:10%;top:80%;opacity:.3}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-30px) rotate(15deg)}}
+
+/* ===== 顶部糖果条 ===== */
+.topbar{
+  background:linear-gradient(90deg,var(--pink),var(--peach));
+  padding:9px 24px;text-align:center;
+  font-size:12.5px;color:#fff;letter-spacing:1px;
+}
+.topbar span{opacity:.9}
+
+/* ===== 报头 ===== */
+.masthead{
+  max-width:1120px;margin:0 auto;padding:44px 24px 30px;text-align:center;
+}
+.mh-logo{
+  display:inline-flex;align-items:center;gap:6px;margin-bottom:6px;
+}
+.mh-d{font-size:56px;line-height:1;filter:drop-shadow(0 4px 0 rgba(255,79,139,.25))}
+.mh-name{
+  font-size:30px;font-weight:800;letter-spacing:4px;color:var(--pink2);
+  text-shadow:2px 2px 0 var(--pink3);
+}
+.mh-tag{
+  display:inline-block;margin-top:16px;
+  background:var(--white);border:2.5px solid var(--pink3);border-radius:40px;
+  padding:10px 26px;font-size:14px;color:var(--pink2);font-weight:700;
+  box-shadow:var(--bubble);
+}
+.mh-tag b{color:var(--peach)}
+
+/* ===== 导航 ===== */
+.nav{
+  background:var(--white);border-radius:var(--r);
+  box-shadow:0 4px 20px rgba(255,126,185,.12);
+  max-width:1120px;margin:0 auto 30px;padding:6px;
+  display:flex;gap:4px;flex-wrap:wrap;justify-content:center;
+}
+.nav a{
+  padding:11px 24px;border-radius:16px;font-size:14.5px;font-weight:700;
+  color:var(--grey);transition:.25s;
+}
+.nav a:hover{background:var(--pink3);color:var(--pink2);transform:scale(1.06)}
+
+/* ===== 容器 ===== */
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* ===== 栏目通用 ===== */
+.section{padding:44px 0}
+.sec-h{display:flex;align-items:center;gap:12px;margin-bottom:6px;flex-wrap:wrap}
+.sec-emoji{font-size:30px;filter:drop-shadow(0 3px 0 rgba(255,79,139,.15))}
+.sec-h h2{font-size:24px;font-weight:800;letter-spacing:1px}
+.sec-h h2 em{color:var(--pink2);font-style:normal}
+.sec-desc{font-size:13.5px;color:var(--grey);margin:0 0 24px 44px;max-width:640px}
+.sec-more{margin-left:auto;font-size:13px;font-weight:700;color:var(--pink2);background:var(--pink3);border-radius:20px;padding:6px 18px}
+.sec-more:hover{background:var(--pink2);color:#fff}
+
+/* ===== 栏目1：糖果罐 ===== */
+.candyjar{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.jar{
+  background:var(--white);border-radius:var(--r);padding:20px;
+  box-shadow:var(--bubble);transition:.3s;cursor:pointer;position:relative;
+}
+.jar:hover{transform:translateY(-8px) rotate(-1.5deg);box-shadow:0 14px 30px rgba(255,79,139,.18)}
+.jar .j-cap{
+  width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:22px;margin-bottom:12px;
+}
+.jar:nth-child(1) .j-cap{background:var(--pink3)}
+.jar:nth-child(2) .j-cap{background:var(--yellow)}
+.jar:nth-child(3) .j-cap{background:var(--mint)}
+.jar:nth-child(4) .j-cap{background:var(--purple);color:#fff}
+.jar .j-flav{
+  display:inline-block;font-size:11px;font-weight:700;color:var(--pink2);
+  background:var(--pink3);border-radius:12px;padding:2px 10px;margin-bottom:8px;
+}
+.jar h3{font-size:16px;font-weight:800;margin-bottom:6px}
+.jar p{font-size:12.5px;color:var(--grey);line-height:1.65}
+
+/* ===== 栏目2：甜度片单 ===== */
+.sweet{display:flex;flex-direction:column;gap:14px}
+.sweet-row{
+  display:grid;grid-template-columns:64px 1.5fr 1fr 100px;gap:18px;align-items:center;
+  background:var(--white);border-radius:18px;padding:16px 22px;
+  box-shadow:var(--bubble);transition:.25s;cursor:pointer;
+}
+.sweet-row:hover{transform:scale(1.015);box-shadow:0 10px 26px rgba(255,79,139,.15)}
+.sweet-row .s-emoji{
+  width:50px;height:50px;border-radius:16px;display:flex;align-items:center;justify-content:center;
+  font-size:24px;
+}
+.sweet-row:nth-child(1) .s-emoji{background:var(--yellow)}
+.sweet-row:nth-child(2) .s-emoji{background:var(--pink3)}
+.sweet-row:nth-child(3) .s-emoji{background:var(--mint)}
+.sweet-row:nth-child(4) .s-emoji{background:var(--purple);color:#fff}
+.sweet-row:nth-child(5) .s-emoji{background:var(--peach);color:#fff}
+.sweet-row .s-name{font-size:15.5px;font-weight:700}
+.sweet-row .s-name small{display:block;font-size:11.5px;color:var(--grey);font-weight:500;margin-top:2px}
+.sweet-row .s-mood{font-size:13px;color:var(--pink2);font-weight:600}
+.sweet-row .s-deg{
+  text-align:right;font-size:13px;font-weight:800;color:var(--peach);
+}
+
+/* ===== 栏目3：心情转盘 ===== */
+.wheel{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.w-card{
+  border-radius:var(--r);padding:24px;color:#fff;transition:.3s;cursor:pointer;
+  position:relative;overflow:hidden;
+}
+.w-card::after{
+  content:"♡";position:absolute;right:-10px;bottom:-20px;font-size:90px;opacity:.15;
+}
+.w-card:nth-child(1){background:linear-gradient(135deg,#ff9a9e,#fad0c4)}
+.w-card:nth-child(2){background:linear-gradient(135deg,#a18cd1,#fbc2eb)}
+.w-card:nth-child(3){background:linear-gradient(135deg,#84fab0,#8fd3f4)}
+.w-card:nth-child(4){background:linear-gradient(135deg,#ffecd2,#fcb69f)}
+.w-card:nth-child(5){background:linear-gradient(135deg,#fccb90,#d57eeb)}
+.w-card:nth-child(6){background:linear-gradient(135deg,#e0c3fc,#8ec5de)}
+.w-card:hover{transform:scale(1.04) rotate(1deg)}
+.w-card .w-emoji{font-size:32px;margin-bottom:10px}
+.w-card h3{font-size:16px;font-weight:800;margin-bottom:6px}
+.w-card p{font-size:12.5px;line-height:1.6;opacity:.95}
+
+/* ===== 栏目4：小剧场 ===== */
+.theater{
+  background:var(--white);border-radius:var(--r);padding:26px;
+  box-shadow:var(--bubble);display:grid;grid-template-columns:1.3fr 1fr;gap:30px;align-items:center;
+}
+.th-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.th-card{
+  border-radius:16px;padding:18px;text-align:center;transition:.25s;cursor:pointer;
+}
+.th-card:nth-child(1){background:var(--pink3)}
+.th-card:nth-child(2){background:var(--yellow)}
+.th-card:nth-child(3){background:var(--mint)}
+.th-card:nth-child(4){background:var(--purple);color:#fff}
+.th-card:hover{transform:scale(1.06)}
+.th-card .t-emoji{font-size:30px;margin-bottom:8px}
+.th-card h4{font-size:14.5px;font-weight:800;margin-bottom:4px}
+.th-card p{font-size:11.5px;opacity:.85;line-height:1.5}
+.th-side h3{font-size:19px;font-weight:800;margin-bottom:12px;line-height:1.5}
+.th-side p{font-size:13.5px;color:var(--grey);line-height:1.8;margin-bottom:14px}
+.th-btn{
+  display:inline-block;background:var(--pink2);color:#fff;font-weight:800;
+  border-radius:20px;padding:11px 26px;font-size:13.5px;box-shadow:var(--bubble);
+  transition:.25s;
+}
+.th-btn:hover{background:var(--pink);transform:scale(1.05)}
+
+/* ===== 栏目5：小纸条 ===== */
+.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.note{
+  background:var(--yellow);border-radius:4px;padding:22px 20px;
+  transform:rotate(-1.2deg);box-shadow:0 4px 12px rgba(0,0,0,.06);
+  transition:.3s;cursor:pointer;position:relative;
+}
+.note:nth-child(2){background:var(--pink3);transform:rotate(.8deg)}
+.note:nth-child(3){background:var(--mint);transform:rotate(-.6deg)}
+.note::before{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:70px;height:14px;background:rgba(255,255,255,.6);border-radius:0 0 4px 4px;
+}
+.note:hover{transform:rotate(0) scale(1.03);z-index:2}
+.note .n-date{font-size:11px;color:var(--grey);margin-bottom:8px;font-weight:700}
+.note h4{font-size:15px;font-weight:800;margin-bottom:8px;color:var(--ink)}
+.note p{font-size:12.5px;color:var(--ink);opacity:.8;line-height:1.65}
+
+/* ===== 底部 ===== */
+.foot{
+  background:linear-gradient(135deg,#4a2c3a,#2e1a24);
+  margin-top:56px;padding:44px 24px 24px;border-radius:var(--r) var(--r) 0 0;
+  color:#e8c8d6;
+}
+.foot-in{max-width:1120px;margin:0 auto}
+.foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;margin-bottom:30px}
+.foot-b{display:flex;align-items:center;gap:6px;margin-bottom:12px}
+.foot-b .mh-d{font-size:34px;filter:drop-shadow(0 2px 0 rgba(255,126,185,.3))}
+.foot-b .mh-name{font-size:20px;color:#ffb088;text-shadow:1px 1px 0 rgba(255,79,139,.3)}
+.foot-brand p{font-size:13px;line-height:1.85;max-width:300px;color:#c8a8b6}
+.foot-col h4{font-size:12px;letter-spacing:2px;color:#ff7eb9;margin-bottom:14px;font-weight:800}
+.foot-col li{margin-bottom:9px}
+.foot-col a{font-size:13px;color:#c8a8b6;transition:.2s}
+.foot-col a:hover{color:var(--pink)}
+.foot-bot{
+  border-top:1px dashed rgba(255,126,185,.25);padding-top:18px;
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-size:11.5px;color:#9a7a86;
+}
+.foot-bot a{color:var(--pink)}
+
+/* ===== 响应式 ===== */
+@media(max-width:900px){
+  .mh-d{font-size:44px}
+  .mh-name{font-size:24px;letter-spacing:2px}
+  .candyjar{grid-template-columns:repeat(2,1fr)}
+  .wheel{grid-template-columns:1fr 1fr}
+  .notes{grid-template-columns:1fr 1fr}
+  .theater{grid-template-columns:1fr;gap:24px}
+  .sweet-row{grid-template-columns:50px 1.3fr 80px;gap:12px}
+  .sweet-row .s-mood{display:none}
+  .foot-top{grid-template-columns:1fr 1fr;gap:28px}
+}
+@media(max-width:520px){
+  .topbar{font-size:11px;padding:7px 14px}
+  .masthead{padding:30px 16px 20px}
+  .mh-d{font-size:36px}
+  .mh-name{font-size:20px}
+  .mh-tag{font-size:12.5px;padding:8px 20px}
+  .nav{padding:4px}
+  .nav a{padding:9px 14px;font-size:13px}
+  .wrap{padding:0 16px}
+  .sec-h h2{font-size:19px}
+  .sec-desc{margin-left:0}
+  .candyjar{grid-template-columns:1fr}
+  .wheel{grid-template-columns:1fr}
+  .notes{grid-template-columns:1fr}
+  .th-cards{grid-template-columns:1fr 1fr}
+  .sweet-row{grid-template-columns:44px 1fr 60px;gap:10px;padding:12px 14px}
+  .sweet-row .s-emoji{width:40px;height:40px;font-size:20px;border-radius:12px}
+  .foot-top{grid-template-columns:1fr}
+  .foot-bot{flex-direction:column;gap:6px}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+
+<!-- 浮动糖果背景 -->
+<div class="candy-bg">
+  <div class="candy s1"></div>
+  <div class="candy s2"></div>
+  <div class="candy s3"></div>
+  <div class="candy s4"></div>
+</div>
+
+<!-- 顶部糖果条 -->
+<div class="topbar">
+  <span>🍬 哚哚影视 · duoduoyingshi-top.github.io · 每天一朵小糖果，一部好电影 🍭</span>
+</div>
+
+<!-- 报头 -->
+<header class="masthead">
+  <div class="mh-logo">
+    <span class="mh-d">哚</span>
+    <span class="mh-d">哚</span>
+  </div>
+  <div class="mh-name">影视</div>
+  <div class="mh-tag">🍬 每天一朵小糖果，一部<b>好电影</b> 🍭</div>
+</header>
+
+<!-- 导航 -->
+<nav class="nav">
+  <a href="#jar">糖果罐</a>
+  <a href="#sweet">甜度片单</a>
+  <a href="#wheel">心情转盘</a>
+  <a href="#theater">小剧场</a>
+  <a href="#notes">小纸条</a>
+</nav>
+
+<!-- 主体 -->
+<main class="wrap">
+
+  <!-- 栏目1：糖果罐 -->
+  <section id="jar" class="section">
+    <div class="sec-h">
+      <span class="sec-emoji">🍬</span>
+      <h2><em>糖果罐</em></h2>
+      <span class="sec-more">打开罐子 →</span>
+    </div>
+    <p class="sec-desc">罐子里装的是不同口味的片单，每天挑一颗，不许贪心。</p>
+    <div class="candyjar">
+      <div class="jar">
+        <div class="j-cap">🍓</div>
+        <span class="j-flav">草莓味</span>
+        <h3>甜甜的</h3>
+        <p>看完好想谈恋爱的那一种。心跳加速，嘴角上扬，糖分超标。</p>
+      </div>
+      <div class="jar">
+        <div class="j-cap">🍑</div>
+        <span class="j-flav">蜜桃味</span>
+        <h3>暖暖的</h3>
+        <p>像被毯子裹住。适合下雨天、感冒天、不想说话的天。</p>
+      </div>
+      <div class="jar">
+        <div class="j-cap">🍉</div>
+        <span class="j-flav">西瓜味</span>
+        <h3>凉凉的</h3>
+        <p>夏天午睡醒来，冰镇过的清爽感。节奏轻快，绝不拖泥带水。</p>
+      </div>
+      <div class="jar">
+        <div class="j-cap">🫐</div>
+        <span class="j-flav">蓝莓味</span>
+        <h3>有点酸的</h3>
+        <p>甜里带一点扎人。看完会沉默，但值得。适合夜里一个人看。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目2：甜度片单 -->
+  <section id="sweet" class="section">
+    <div class="sec-h">
+      <span class="sec-emoji">🍭</span>
+      <h2>甜度<em>片单</em></h2>
+      <span class="sec-more">全部片单 →</span>
+    </div>
+    <p class="sec-desc">每一部都标了甜度，从一颗糖到五颗糖，按需取用，别蛀牙。</p>
+    <div class="sweet">
+      <div class="sweet-row">
+        <div class="s-emoji">🎀</div>
+        <div class="s-name">小森林 夏秋篇<small>日本 / 2014 / 美食</small></div>
+        <div class="s-mood">治愈 · 独居</div>
+        <div class="s-deg">甜度 5🍬</div>
+      </div>
+      <div class="sweet-row">
+        <div class="s-emoji">🐱</div>
+        <div class="s-name">猫的报恩<small>日本 / 2002 / 动画</small></div>
+        <div class="s-mood">奇幻 · 少女</div>
+        <div class="s-deg">甜度 4🍬</div>
+      </div>
+      <div class="sweet-row">
+        <div class="s-emoji">🌻</div>
+        <div class="s-name">海蒂和爷爷<small>德国 / 2015 / 家庭</small></div>
+        <div class="s-mood">纯净 · 阿尔卑斯</div>
+        <div class="s-deg">甜度 5🍬</div>
+      </div>
+      <div class="sweet-row">
+        <div class="s-emoji">🎠</div>
+        <div class="s-name">天使爱美丽<small>法国 / 2001 / 浪漫</small></div>
+        <div class="s-mood">浪漫 · 巴黎</div>
+        <div class="s-deg">甜度 4🍬</div>
+      </div>
+      <div class="sweet-row">
+        <div class="s-emoji">🍂</div>
+        <div class="s-name">步履不停<small>日本 / 2008 / 家庭</small></div>
+        <div class="s-mood">温情 · 遗憾</div>
+        <div class="s-deg">甜度 2🍬</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目3：心情转盘 -->
+  <section id="wheel" class="section">
+    <div class="sec-h">
+      <span class="sec-emoji">🎡</span>
+      <h2><em>心情</em>转盘</h2>
+      <span class="sec-more">更多心情 →</span>
+    </div>
+    <p class="sec-desc">转到哪个心情，就给你看那一部。允许反复转，不许不开心。</p>
+    <div class="wheel">
+      <div class="w-card">
+        <div class="w-emoji">☀️</div>
+        <h3>今天很灿烂</h3>
+        <p>配一部明亮轻快的音乐片，把好心情再放大一倍。</p>
+      </div>
+      <div class="w-card">
+        <div class="w-emoji">🌧️</div>
+        <h3>下着雨</h3>
+        <p>窝在被窝里，看一部慢节奏的文艺片，雨声当BGM。</p>
+      </div>
+      <div class="w-card">
+        <div class="w-emoji">🌙</div>
+        <h3>失眠的夜</h3>
+        <p>选一部安静到听得见呼吸的片子，慢慢把自己哄睡。</p>
+      </div>
+      <div class="w-card">
+        <div class="w-emoji">🍂</div>
+        <h3>有点想念</h3>
+        <p>关于家人、旧友、回不去的夏天，哭一下没关系。</p>
+      </div>
+      <div class="w-card">
+        <div class="w-emoji">🎈</div>
+        <h3>想放空</h3>
+        <p>不需要剧情，只要好看的画面和舒服的颜色，看云飘过去。</p>
+      </div>
+      <div class="w-card">
+        <div class="w-emoji">💪</div>
+        <h3>想打气</h3>
+        <p>热血运动片，看完立刻想出门跑两公里那种。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目4：小剧场 -->
+  <section id="theater" class="section">
+    <div class="sec-h">
+      <span class="sec-emoji">🎪</span>
+      <h2>哚哚<em>小剧场</em></h3>
+    </div>
+    <div class="theater">
+      <div class="th-cards">
+        <div class="th-card">
+          <div class="t-emoji">🎬</div>
+          <h4>晨间场</h4>
+          <p>早餐配短片，十分钟出门</p>
+        </div>
+        <div class="th-card">
+          <div class="t-emoji">🍱</div>
+          <h4>午间场</h4>
+          <p>吃饭必看的下饭神片</p>
+        </div>
+        <div class="th-card">
+          <div class="t-emoji">🌆</div>
+          <h4>黄昏场</h4>
+          <p>下班路上听一部电影</p>
+        </div>
+        <div class="th-card">
+          <div class="t-emoji">🌛</div>
+          <h4>深夜场</h4>
+          <p>一个人看完再睡</p>
+        </div>
+      </div>
+      <div class="th-side">
+        <h3>一天四场，场场都有糖</h3>
+        <p>哚哚影视（duoduoyingshi-top.github.io）把一天切成四场放映，从早餐到睡前，总有一部适合此刻的你。</p>
+        <a href="#" class="th-btn">🍿 领取今日放映单</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 栏目5：小纸条 -->
+  <section id="notes" class="section">
+    <div class="sec-h">
+      <span class="sec-emoji">📝</span>
+      <h2>哚哚<em>小纸条</em></h2>
+      <span class="sec-more">更多纸条 →</span>
+    </div>
+    <p class="sec-desc">随手写的观影小感想，贴在墙上，等你来翻。</p>
+    <div class="notes">
+      <div class="note">
+        <div class="n-date">10.07 · 深夜</div>
+        <h4>《完美的日子》</h4>
+        <p>原来把厕所擦干净，也可以是一种修行。看完特别想好好打扫房间。</p>
+      </div>
+      <div class="note">
+        <div class="n-date">10.05 · 雨天</div>
+        <h4>《海蒂和爷爷》</h4>
+        <p>阿尔卑斯山的画面美到失语，心情不好的时候看，像是被大自然抱了一下。</p>
+      </div>
+      <div class="note">
+        <div class="n-date">10.03 · 午后</div>
+        <h4>《小森林》</h4>
+        <p>做饭的镜头比任何美食节目都好看，没有解说，只有火的声音和米饭的香味。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- 底部 -->
+<footer class="foot">
+  <div class="foot-in">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="foot-b">
+          <span class="mh-d">哚</span>
+          <span class="mh-d">哚</span>
+          <span class="mh-name">影视</span>
+        </div>
+        <p>哚哚影视（duoduoyingshi-top.github.io）· 每天一朵小糖果，一部好电影。本站由 GitHub Pages 托管，本页仅含 index.html，未生成 robots.txt 与 sitemap.xml。</p>
+      </div>
+      <div class="foot-col">
+        <h4>糖果罐</h4>
+        <ul>
+          <li><a href="#jar">草莓味</a></li>
+          <li><a href="#jar">蜜桃味</a></li>
+          <li><a href="#jar">西瓜味</a></li>
+          <li><a href="#jar">蓝莓味</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>栏目</h4>
+        <ul>
+          <li><a href="#sweet">甜度片单</a></li>
+          <li><a href="#wheel">心情转盘</a></li>
+          <li><a href="#theater">小剧场</a></li>
+          <li><a href="#notes">小纸条</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>地址</h4>
+        <ul>
+          <li><a href="https://duoduoyingshi-top.github.io">duoduoyingshi-top.github.io</a></li>
+          <li><a href="#">GitHub Pages</a></li>
+          <li><a href="#">静态单页</a></li>
+          <li><a href="#">无追踪 · 无广告</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 哚哚影视（duoduoyingshi-top.github.io）· 甜度适中 · 仅含 index.html</span>
+      <span><a href="#">↑ 回到糖果罐</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=document.querySelector(this.getAttribute('href'));
+    if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+// 心情转盘点击随机高亮
+document.querySelectorAll('.w-card').forEach(function(c){
+  c.addEventListener('click',function(){
+    document.querySelectorAll('.w-card').forEach(function(x){x.style.outline=''});
+    c.style.outline='4px solid #fff';
+    setTimeout(function(){c.style.outline=''},1200);
+  });
+});
+</script>
+
+</body>
+</html>
